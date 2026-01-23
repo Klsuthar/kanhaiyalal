@@ -22,9 +22,7 @@
     display: block;
     transition: transform 0.3s ease;
     position: relative;
-    z-index: 1;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 0;
 }
 
 #school-service:hover .service-showcase-img {
@@ -300,15 +298,11 @@
 /* Floating Icons Animation */
 .floating-icon {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     object-fit: contain;
-    border-radius: 50%;
-    background: white;
-    padding: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     animation: float 3s ease-in-out infinite;
-    z-index: 0;
+    z-index: 10;
 }
 
 .floating-icon-1 {
@@ -342,9 +336,8 @@
 
 @media (max-width: 768px) {
     .floating-icon {
-        width: 70px;
-        height: 70px;
-        padding: 10px;
+        width: 90px;
+        height: 90px;
     }
     
     .floating-icon-1 {
