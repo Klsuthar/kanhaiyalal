@@ -1,0 +1,366 @@
+/* Services Section */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.service-intro {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.service-details {
+    margin-top: 2rem;
+    text-align: left;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1.5rem;
+}
+
+.service-details h4 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+}
+
+.service-details h4:first-child {
+    margin-top: 0;
+}
+
+.detail-text {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.benefit-list {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.benefit-list li {
+    margin-bottom: 1rem;
+    color: #475569;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.benefit-list li i {
+    color: var(--secondary-color);
+    margin-top: 3px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.benefit-list strong {
+    color: var(--primary-color);
+}
+
+.pwa-highlight {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary-color);
+    margin: 2rem 0;
+}
+
+.pwa-highlight h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pwa-benefit {
+    color: #1e40af;
+    font-weight: 500;
+    font-style: italic;
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+}
+
+.pages-list {
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.pages-list li {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    padding-left: 20px;
+    position: relative;
+}
+
+.pages-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.addon-list {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.addon-list li {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.addon-list li i {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+.business-types {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+}
+
+.business-types li {
+    color: #475569;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.business-types li:hover {
+    background: #eff6ff;
+    transform: translateX(3px);
+}
+
+.business-types li i {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.service-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--secondary-color), #2563eb);
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.service-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.service-cta i {
+    margin-left: 8px;
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.service-cta:hover i {
+    transform: translateX(4px);
+}
+
+/* Projects Section */
+.projects {
+    background: var(--white);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.project-card > h3,
+.project-card > p {
+    padding: 0 35px;
+}
+
+.project-card h3 {
+    padding-top: 0;
+    margin-top: 20px;
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.project-card p {
+    padding-bottom: 35px;
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.project-link {
+    display: inline-block;
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 15px 0 25px 35px;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    color: #2563eb;
+    transform: translateX(5px);
+}
+
+.project-link i {
+    margin-left: 5px;
+    font-size: 0.85rem;
+}
+
+.project-card a:has(.project-img) {
+    display: block;
+    overflow: hidden;
+}
+
+.project-card a:has(.project-img):hover .project-img {
+    transform: scale(1.05);
+}
+
+/* Philosophy Section */
+.philosophy {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+}
+
+.philosophy .section-title {
+    color: var(--white);
+}
+
+.quote {
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-style: italic;
+    margin: 2rem auto 4rem;
+    max-width: 800px;
+    color: #94a3b8;
+}
+
+.philosophy-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.phil-item {
+    text-align: center;
+}
+
+.phil-item i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.phil-item h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* About Section */
+.about-text {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.role {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.location {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.location i {
+    color: var(--secondary-color);
+    margin-right: 8px;
+}
+
+.skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.skill-tag {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Contact Section */
+.contact-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.cta-box {
+    text-align: center;
+    background: #e0f2fe;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-box p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
