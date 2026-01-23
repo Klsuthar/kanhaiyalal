@@ -367,3 +367,40 @@
         bottom: 5%;
     }
 }
+
+/* Styled Heading */
+#school-service h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#school-service .highlight-text {
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+}
+
+#school-service .service-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+#school-service .service-intro strong {
+    color: #FF6B35;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    #school-service h3 {
+        font-size: 1.6rem;
+    }
+    
+    #school-service .service-intro {
+        font-size: 1.05rem;
+    }
+}
