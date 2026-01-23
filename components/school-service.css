@@ -1,0 +1,63 @@
+/* School Service Component Styles */
+
+#school-service {
+    /* Custom styles specific to school service */
+}
+
+#school-service .service-image-wrapper {
+    width: 100%;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#school-service .service-showcase-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+#school-service:hover .service-showcase-img {
+    transform: scale(1.02);
+}
+
+#school-service .icon-box {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+#school-service .pwa-highlight {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary-color);
+    margin: 2rem 0;
+}
+
+#school-service .pwa-highlight h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#school-service .pwa-benefit {
+    color: #1e40af;
+    font-weight: 500;
+    font-style: italic;
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #school-service .service-image-wrapper {
+        margin-bottom: 1.5rem;
+    }
+    
+    #school-service .pwa-highlight {
+        padding: 20px;
+    }
+}

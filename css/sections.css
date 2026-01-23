@@ -364,3 +364,30 @@
     color: var(--primary-color);
     font-weight: 500;
 }
+
+
+/* Service Showcase Image */
+.service-image-wrapper {
+    width: 100%;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-showcase-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-showcase-img {
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    .service-image-wrapper {
+        margin-bottom: 1.5rem;
+    }
+}
