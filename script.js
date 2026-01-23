@@ -16,6 +16,28 @@ navLinks.forEach(link => {
     });
 });
 
+// Active Tab Highlighting on Scroll
+const sections = document.querySelectorAll('section[id]');
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+});
+
 // Scroll Reveal Animation
 const observerOptions = {
     root: null,
@@ -35,3 +57,9 @@ const observer = new IntersectionObserver((entries, observer) => {
 
 const fadeElements = document.querySelectorAll('.fade-in');
 fadeElements.forEach(el => observer.observe(el));
+
+// Set initial active state on page load
+window.addEventListener('load', () => {
+    const homeLink = document.querySelector('.nav-link[href="#home"]');
+    if (homeLink) homeLink.classList.add('active');
+});
