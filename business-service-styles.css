@@ -1,0 +1,38 @@
+/* Business Types List */
+
+.business-types {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+}
+
+.business-types li {
+    color: #475569;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.business-types li:hover {
+    background: #eff6ff;
+    transform: translateX(3px);
+}
+
+.business-types li i {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .business-types {
+        grid-template-columns: 1fr;
+    }
+}

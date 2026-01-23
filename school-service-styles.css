@@ -1,0 +1,136 @@
+/* New Service Section Styles */
+
+.service-intro {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.detail-text {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.benefit-list {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.benefit-list li {
+    margin-bottom: 1rem;
+    color: #475569;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.benefit-list li i {
+    color: var(--secondary-color);
+    margin-top: 3px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.benefit-list strong {
+    color: var(--primary-color);
+}
+
+.pwa-highlight {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary-color);
+    margin: 2rem 0;
+}
+
+.pwa-highlight h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pwa-highlight h4 i {
+    font-size: 1.2rem;
+}
+
+.pwa-benefit {
+    color: #1e40af;
+    font-weight: 500;
+    font-style: italic;
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+}
+
+.pages-list {
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.pages-list li {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    padding-left: 20px;
+    position: relative;
+}
+
+.pages-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.addon-list {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.addon-list li {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.addon-list li i {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+.service-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--secondary-color), #2563eb);
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.service-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.service-cta i {
+    margin-left: 8px;
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.service-cta:hover i {
+    transform: translateX(4px);
+}
