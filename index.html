@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="components/school-service.css">
     <link rel="stylesheet" href="components/business-service.css">
+    <link rel="stylesheet" href="css/hero-animation.css">
     <!-- Google Fonts: Outfit for modern, clean look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,10 +50,12 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <picture class="hero-bg">
-                <source media="(min-width: 768px)" srcset="images/bg-desktop.png">
-                <img src="images/bg-mobile.png" alt="">
-            </picture>
+            <!-- Animated Background Layers -->
+            <div class="hero-bg-animated">
+                <div class="gradient-wave"></div>
+                <canvas id="particleCanvas" class="particle-canvas"></canvas>
+            </div>
+            
             <div class="container hero-content fade-in">
                 <h1 class="hero-title">Modern, Fast & Animation-Rich Websites</h1>
                 <p class="hero-subtitle">Specializing in School Websites & Online Presence for Business.</p>
@@ -409,6 +412,7 @@
     </script>
     <script src="js/navigation.js"></script>
     <script src="js/animations.js"></script>
+    <script src="js/hero-animation.js"></script>
 </body>
 
 </html>
