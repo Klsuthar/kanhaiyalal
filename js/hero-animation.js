@@ -346,7 +346,11 @@
             return;
         }
         
-        e.preventDefault();
+        // Don't prevent default for touch to allow scrolling
+        if (e.type !== 'touchstart') {
+            e.preventDefault();
+        }
+        
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX || (e.touches && e.touches[0].clientX);
         const y = e.clientY || (e.touches && e.touches[0].clientY);
@@ -368,7 +372,7 @@
 
     // Touch move handler
     function handleTouchMove(e) {
-        e.preventDefault();
+        // Allow scrolling - don't prevent default
         const rect = canvas.getBoundingClientRect();
         mouseX = e.touches[0].clientX - rect.left;
         mouseY = e.touches[0].clientY - rect.top;
@@ -399,8 +403,8 @@
     canvas.addEventListener('click', handleInteraction);
     
     // Touch events for mobile
-    canvas.addEventListener('touchstart', handleInteraction, { passive: false });
-    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchstart', handleInteraction);
+    canvas.addEventListener('touchmove', handleTouchMove);
     canvas.addEventListener('touchend', handleTouchEnd);
 
     // Also listen on hero section for full coverage
@@ -408,8 +412,8 @@
     if (heroSection) {
         heroSection.addEventListener('mousemove', handleMouseMove);
         heroSection.addEventListener('click', handleInteraction);
-        heroSection.addEventListener('touchstart', handleInteraction, { passive: false });
-        heroSection.addEventListener('touchmove', handleTouchMove, { passive: false });
+        heroSection.addEventListener('touchstart', handleInteraction);
+        heroSection.addEventListener('touchmove', handleTouchMove);
     }
 
     // Initialize
