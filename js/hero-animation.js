@@ -31,6 +31,8 @@
     let ripples = [];
     let trailParticles = [];
     let magneticForce = 1;
+    let animationTime = 0;
+    let lastAmbientPulse = 0;
 
     // Canvas setup
     function resizeCanvas() {
@@ -50,6 +52,7 @@
                 this.opacity = 1;
                 this.life = 1;
                 this.isBurst = true;
+                this.pulsePhase = 0;
             } else {
                 this.reset();
                 this.y = Math.random() * canvas.height;
@@ -66,6 +69,11 @@
             this.speedX = Math.random() * 0.3 - 0.15;
             this.opacity = Math.random() * 0.5 + 0.2;
             this.life = 1;
+            // Autonomous animation properties
+            this.angle = Math.random() * Math.PI * 2;
+            this.angleSpeed = (Math.random() - 0.5) * 0.02;
+            this.pulsePhase = Math.random() * Math.PI * 2;
+            this.pulseSpeed = Math.random() * 0.03 + 0.02;
         }
 
         getColor() {
@@ -92,10 +100,22 @@
                 return this.life > 0;
             }
 
-            this.y += this.speedY;
-            this.x += this.speedX;
+            // Autonomous organic movement (always active)
+            this.angle += this.angleSpeed;
+            this.pulsePhase += this.pulseSpeed;
+            
+            // Sine wave movement for organic feel
+            const sineWave = Math.sin(this.angle) * 0.5;
+            const pulseEffect = Math.sin(this.pulsePhase) * 0.3;
+            
+            this.y += this.speedY + pulseEffect * 0.1;
+            this.x += this.speedX + sineWave;
+            
+            // Breathing effect on opacity
+            const baseOpacity = Math.random() * 0.5 + 0.2;
+            this.opacity = baseOpacity + Math.sin(this.pulsePhase) * 0.15;
 
-            // Enhanced magnetic attraction
+            // Enhanced magnetic attraction when mouse is active
             if (isMouseActive) {
                 const dx = mouseX - this.x;
                 const dy = mouseY - this.y;
@@ -104,10 +124,8 @@
 
                 if (distance < maxDistance) {
                     const force = (maxDistance - distance) / maxDistance;
-                    // Magnetic pull towards cursor
                     this.x += (dx / distance) * force * magneticForce;
                     this.y += (dy / distance) * force * magneticForce;
-                    // Glow effect when near cursor
                     this.opacity = Math.min(0.9, this.opacity + force * 0.3);
                 } else {
                     this.opacity = Math.max(0.2, this.opacity - 0.01);
@@ -120,13 +138,21 @@
         }
 
         draw() {
+            // Breathing size effect with safety check
+            const breathingSize = this.size + (this.pulsePhase ? Math.sin(this.pulsePhase * 1.5) * 0.3 : 0);
+            
+            // Safety check for valid values
+            if (!isFinite(breathingSize) || !isFinite(this.x) || !isFinite(this.y)) {
+                return;
+            }
+            
             // Enhanced glow effect for particles near cursor
             if (isMouseActive && !this.isBurst) {
                 const dx = mouseX - this.x;
                 const dy = mouseY - this.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < 120) {
-                    const glowSize = this.size * 4;
+                    const glowSize = breathingSize * 4;
                     const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowSize);
                     gradient.addColorStop(0, this.color + (this.opacity * 0.8) + ')');
                     gradient.addColorStop(0.5, this.color + (this.opacity * 0.4) + ')');
@@ -139,19 +165,19 @@
             }
             
             // Main particle with subtle glow
-            const mainGradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 1.5);
+            const mainGradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, breathingSize * 1.5);
             mainGradient.addColorStop(0, this.color + this.opacity + ')');
             mainGradient.addColorStop(0.7, this.color + (this.opacity * 0.6) + ')');
             mainGradient.addColorStop(1, this.color + '0)');
             ctx.fillStyle = mainGradient;
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+            ctx.arc(this.x, this.y, breathingSize * 1.5, 0, Math.PI * 2);
             ctx.fill();
             
             // Core particle
             ctx.fillStyle = this.color + this.opacity + ')';
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.arc(this.x, this.y, breathingSize, 0, Math.PI * 2);
             ctx.fill();
         }
     }
@@ -202,6 +228,28 @@
     // Animation loop
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        animationTime += 0.01;
+
+        // Ambient pulses - random automatic animations (every 3-6 seconds)
+        const now = Date.now();
+        if (now - lastAmbientPulse > 3000) {
+            // Multiple random bursts
+            const burstCount = Math.floor(Math.random() * 2) + 1;
+            
+            for (let b = 0; b < burstCount; b++) {
+                const randomX = Math.random() * canvas.width;
+                const randomY = Math.random() * canvas.height;
+                
+                ripples.push(new Ripple(randomX, randomY));
+                
+                const burstSize = Math.floor(Math.random() * 8) + 6;
+                for (let i = 0; i < burstSize; i++) {
+                    particles.push(new Particle(randomX, randomY, true));
+                }
+            }
+            
+            lastAmbientPulse = now;
+        }
 
         // Update and draw ripples
         ripples = ripples.filter(ripple => {
@@ -246,7 +294,10 @@
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
                 if (distance < 140) {
-                    const opacity = 0.2 * (1 - distance / 140);
+                    // Animated opacity based on time
+                    const pulseEffect = Math.sin(animationTime * 2 + distance * 0.05) * 0.1 + 0.9;
+                    const opacity = 0.2 * (1 - distance / 140) * pulseEffect;
+                    
                     const gradient = ctx.createLinearGradient(
                         particles[i].x, particles[i].y,
                         particles[j].x, particles[j].y
