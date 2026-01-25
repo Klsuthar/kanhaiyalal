@@ -37,44 +37,95 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 1px;
     position: relative;
-    font-family: 'Courier New', Courier, monospace;
-    /* Tech vibe */
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .logo .text {
     font-family: var(--font-heading);
-    /* Keep brand name unified */
     letter-spacing: -1px;
+    z-index: 2;
+    transition: color 0.3s ease;
 }
 
 .logo .dot {
     color: var(--secondary-color);
     font-size: 2.2rem;
     line-height: 0;
-    margin-right: 4px;
+    margin-right: 2px;
+    transition: color 0.3s ease;
 }
 
 .tech-bracket {
-    color: var(--secondary-color);
+    color: #94a3b8;
+    /* Subtle grey initially */
     font-weight: 700;
-    transition: all 0.3s ease;
-    opacity: 0.7;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0.5;
     font-size: 1.4rem;
+    display: inline-block;
 }
 
-/* Hover Animation: Brackets glow and move */
-.logo:hover .tech-bracket {
-    color: #3b82f6;
+/* Cursor Animation */
+.cursor {
+    color: var(--secondary-color);
+    font-weight: 900;
+    margin: 0 2px 0 0;
+    animation: blink 1s step-end infinite;
     opacity: 1;
-    transform: scale(1.1);
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Hover Interactions */
+.logo:hover {
+    background: rgba(37, 99, 235, 0.05);
+    /* Very subtle blue tint */
+}
+
+/* Syntax Highlighting on Hover */
+.logo:hover .tech-bracket {
+    color: #f59e0b;
+    /* Amber for brackets (like JS/HTML) */
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.logo:hover .tech-bracket:first-child {
+    transform: translateX(-4px);
+}
+
+.logo:hover .tech-bracket:last-child {
+    transform: translateX(4px);
 }
 
 .logo:hover .text {
-    color: var(--secondary-color);
-    transition: color 0.3s ease;
+    color: #2563eb;
+    /* Blue text */
+}
+
+.logo:hover .dot {
+    color: #f59e0b;
+    /* Amber dot */
+}
+
+.logo:hover .cursor {
+    color: #2563eb;
+    text-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
 }
 
 .nav-list {
