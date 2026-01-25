@@ -492,19 +492,24 @@ section:not(#services) {
 /* Hover Content - Slide Up */
 .process-description {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
+    /* Slight overlap to prevent bottom gap */
     left: 0;
     width: 100%;
+    /* Increase height slightly to cover top gap issues */
+    height: calc(100% + 1px);
+    top: auto;
     padding: 24px;
     background: linear-gradient(to top, var(--secondary-color) 0%, rgba(59, 130, 246, 0.95) 100%);
     color: white;
     transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     z-index: 10;
+    border-radius: 12px;
+    /* Match parent border radius */
 }
 
 .process-card:hover .process-description,
