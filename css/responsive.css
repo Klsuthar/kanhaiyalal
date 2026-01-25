@@ -267,6 +267,57 @@
         padding: 20px;
     }
 
+    /* About Section */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-text-content .section-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .about-label {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+
+    .bio-text {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .skills-wrapper {
+        justify-content: flex-start;
+        margin-top: 30px;
+        gap: 10px;
+    }
+
+    .about-visual {
+        flex-direction: row;
+        /* Horizontal scroll for stats or wrapped */
+        flex-wrap: wrap;
+        /* Allow wrapping if needed */
+        gap: 15px;
+    }
+
+    .stat-card {
+        flex: 1 1 100%;
+        /* Full width on mobile or sharing row */
+        padding: 24px;
+        min-width: unset;
+    }
+
+    /* Make stats 50/50 if space allows, or stacked */
+    .stat-card {
+        flex: 1 1 100%;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
     /* Contact */
     .contact-content {
         gap: 15px;
