@@ -11,7 +11,7 @@
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
-        padding: 1rem 0 !important;
+        padding: 0.5rem 0 !important;
         border-radius: 0 !important;
         background: #ffffff !important;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
@@ -202,20 +202,24 @@
         overflow-x: auto;
         gap: 15px;
         padding-bottom: 30px;
-        /* Scrollbar/Space buffer */
+        width: 100%;
+        /* Ensure full width usage */
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
     }
 
     .process-card {
-        height: 180px;
-        /* Slightly taller for better touch area */
-        padding: 20px;
+        height: 220px;
+        /* Taller for better readability */
+        padding: 24px;
         min-width: 280px;
-        /* Fixed width for scrolling */
+        width: 280px;
+        /* Fixed width for consistent cards */
         flex-shrink: 0;
         scroll-snap-align: center;
         margin-bottom: 0;
+        margin-right: 15px;
+        /* Add spacing between cards */
     }
 
     .process-step-number {
