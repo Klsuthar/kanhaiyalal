@@ -132,3 +132,32 @@ a {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Custom Scrollbar - Minimal & Brand Themed */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    /* For horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    /* Subtle Grey initially */
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+    /* Turn Brand Blue on interaction */
+}
+
+/* Firefox Support */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}

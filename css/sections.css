@@ -637,29 +637,90 @@
     font-weight: 500;
 }
 
-/* Contact Section */
-.contact-content {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 4rem;
-}
-
-.cta-box {
-    text-align: center;
-    background: #e0f2fe;
-    padding: 40px;
-    border-radius: 20px;
-    max-width: 600px;
+/* Contact Section - Redesigned */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-.cta-box p {
+.contact-main-btn {
+    padding: 16px 36px;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+}
+
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-option-card {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+    border-color: #e2e8f0;
+}
+
+.icon-bubble {
+    width: 50px;
+    height: 50px;
+    background: #eff6ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
     font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+}
+
+.contact-option-card:hover .icon-bubble {
+    background: var(--secondary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.contact-text h3 {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
     color: var(--primary-color);
-    font-weight: 500;
+    font-weight: 700;
+}
+
+.contact-text p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.arrow-icon {
+    margin-left: auto;
+    color: #cbd5e1;
+    transition: all 0.3s ease;
+}
+
+.contact-option-card:hover .arrow-icon {
+    color: var(--secondary-color);
+    transform: translateX(5px);
 }
 
 
