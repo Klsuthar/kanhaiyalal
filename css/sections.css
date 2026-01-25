@@ -226,10 +226,21 @@
 }
 
 /* Ensure global overflow visibility for sticky context */
-main,
-section,
-.container {
+main {
     overflow: visible !important;
+}
+
+/* Specific overrides for Sticky Section */
+#services,
+#services .container {
+    overflow: visible !important;
+}
+
+/* Ensure sections with background elements DO clip overflow */
+#about,
+.hero,
+section:not(#services) {
+    overflow: hidden !important;
 }
 
 .projects-grid {
