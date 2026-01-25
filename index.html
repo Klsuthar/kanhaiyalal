@@ -7,6 +7,23 @@
     <meta name="description"
         content="Kanhaiya Lal Suthar – Digital Website Solutions. Specializing in School Websites and Online Presence for Medium-Scale Businesses.">
     <title>Kanhaiya Lal Suthar | Digital Website Solutions</title>
+    <script>
+        // Polyfill to prevent SecurityError from extensions/local file execution
+        try {
+            window.sessionStorage;
+        } catch (e) {
+            console.warn("SessionStorage access denied. Mocking implementation to prevent errors.");
+            Object.defineProperty(window, 'sessionStorage', {
+                value: {
+                    getItem: () => null,
+                    setItem: () => { },
+                    removeItem: () => { },
+                    clear: () => { }
+                },
+                writable: true
+            });
+        }
+    </script>
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components.css">
