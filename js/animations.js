@@ -21,60 +21,89 @@ function setupInfiniteScroll(containerId, itemClass) {
     const container = document.querySelector(containerId);
     if (!container) return;
 
-    // Only active on mobile/tablet where horiz scroll exists
+    // Only active on mobile/tablet
     if (window.innerWidth > 768) return;
 
-    const originalContent = Array.from(container.children);
+    // 1. Get accurate gap from CSS
+    const style = window.getComputedStyle(container);
+    const gap = parseInt(style.getPropertyValue('gap') || '20'); // Default to 20 if missing
 
-    // Duplicate content multiple times to ensure smooth scrolling
-    // We append copies to creating the illusion of infinite length
-    originalContent.forEach(item => {
-        const clone = item.cloneNode(true);
-        container.appendChild(clone);
-    });
-    // Clone again for safety buffer
-    originalContent.forEach(item => {
-        const clone = item.cloneNode(true);
-        container.appendChild(clone);
+    // 2. Measure single set width BEFORE cloning
+    const originalChildren = Array.from(container.children);
+    let singleSetWidth = 0;
+    originalChildren.forEach(item => {
+        singleSetWidth += item.offsetWidth + gap;
     });
 
+    // 3. Clone items to create buffer (x4 for smoothness)
+    // We need enough buffer so we never see blank space during the "jump"
+    for (let i = 0; i < 2; i++) {
+        originalChildren.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true'); // Accessibility
+            container.appendChild(clone);
+        });
+    }
 
-    // Optional: Auto-scroll logic (gentle movement)
-    // If you want user-controlled loop only, we need custom touch handling 
-    // or we accept that CSS snap-scroll is "finite" unless managed by JS.
-    // Given the request "wapis first wala aa jaye", simple CSS snap doesn't loop automatically.
-    // We'll add a scroll listener to reset position efficiently.
+    // 4. Auto-Scroll Logic
+    let isPaused = false;
+    let scrollPos = 0;
+    const speed = 0.5; // slow smooth speed
 
-    container.addEventListener('scroll', () => {
-        const maxScroll = container.scrollWidth - container.clientWidth;
+    function animate() {
+        if (!isPaused) {
+            scrollPos += speed;
 
-        // Loop to start
-        if (container.scrollLeft >= maxScroll - 50) { // Threshold
-            // Jump back to start (+ buffer) seamlessly
-            // We need to calculate precise width of one set of items
-            const singleSetWidth = originalContent.reduce((acc, item) => acc + item.offsetWidth + 20, 0); // 20 is gap
-            container.scrollLeft = container.scrollLeft - singleSetWidth;
+            // Seamless Reset (The Loop)
+            if (scrollPos >= singleSetWidth) {
+                scrollPos -= singleSetWidth;
+            }
+            container.scrollLeft = scrollPos;
+        } else {
+            // If paused (user is touching), verify we track their manual scroll
+            // so we don't jump when resuming
+            scrollPos = container.scrollLeft;
         }
+        requestAnimationFrame(animate);
+    }
 
-        // Loop to end (if scrolling back)
-        if (container.scrollLeft <= 0) {
-            const singleSetWidth = originalContent.reduce((acc, item) => acc + item.offsetWidth + 20, 0);
-            container.scrollLeft = container.scrollLeft + singleSetWidth;
-        }
+    // 5. Touch Interaction Handlers
+    container.addEventListener('touchstart', () => {
+        isPaused = true;
+        // Optional: Disable scroll snap while dragging for smoother feel? 
+        // container.style.scrollSnapType = 'none';
     });
+
+    container.addEventListener('touchend', () => {
+        // Resume after a short delay
+        setTimeout(() => {
+            isPaused = false;
+            // container.style.scrollSnapType = 'x mandatory';
+        }, 1000);
+    });
+
+    // Start Animation
+    requestAnimationFrame(animate);
 }
 
 // Initialize on Load and Resize
 window.addEventListener('load', () => {
-    setupInfiniteScroll('.process-grid', '.process-card');
-    setupInfiniteScroll('.projects-grid', '.project-card');
+    // Small delay to ensure layout is final
+    setTimeout(() => {
+        setupInfiniteScroll('.process-grid', '.process-card');
+        setupInfiniteScroll('.projects-grid', '.project-card');
+    }, 100);
 });
 
+// Handle Resize (Simple Reload to reset logic)
 let resizeTimer;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-        // Ideally we'd reset/re-init here for robust resizing
-        // For now, simpler implementation is acceptable
-    }, 250);
+        if (window.innerWidth <= 768) {
+            // Reloading is safest/easiest way to recalculate widths/clones
+            // forcing a clean slate for the js logic
+            // location.reload(); // Optional: might be too aggressive, but effective
+        }
+    }, 500);
 });
