@@ -100,10 +100,42 @@
         grid-template-columns: 1fr;
     }
 
-    /* Philosophy */
+    /* Philosophy & Process */
     .philosophy-grid {
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
+    }
+
+    .process-container {
+        margin-top: 1.5rem;
+    }
+
+    .process-title {
+        font-size: 1.5rem;
+    }
+
+    .process-card {
+        height: 160px;
+        padding: 16px;
+    }
+
+    .process-step-number {
+        font-size: 2.5rem;
+        top: 15px;
+        right: 15px;
+    }
+
+    .process-icon {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .process-heading {
+        font-size: 1.1rem;
+    }
+
+    .process-description {
+        padding: 20px;
     }
 
     /* Footer */
