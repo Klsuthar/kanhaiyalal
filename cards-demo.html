@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Stacked Cards</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body {
+            background-color: #0f172a;
+            /* Dark theme background */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: white;
+            padding-bottom: 100px;
+        }
+
+        .header-spacer {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header-spacer h2 {
+            font-size: 1.5rem;
+            color: white;
+            margin: 0;
+        }
+
+        /* Stack Container */
+        .stack-container {
+            max-width: 500px;
+            /* Mobile width constraint for demo */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* The Card */
+        .stack-card {
+            background: #1e293b;
+            /* Dark slate card */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            /* Space between cards start positions */
+
+            /* The Sticky Magic */
+            position: sticky;
+            top: 100px;
+            /* Distance from top where it sticks */
+
+            /* Visual styling for stacking effect */
+            height: 300px;
+            /* Fixed height for consistent stacking */
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+            /* Shadow facing up to separate from card below */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        /* Specific Colors/Offsets for each card */
+        .card-1 {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            top: 100px;
+            z-index: 1;
+        }
+
+        .card-2 {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            top: 120px;
+            /* Offset slightly so we see the one behind gently */
+            z-index: 2;
+        }
+
+        .card-3 {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            top: 140px;
+            z-index: 3;
+        }
+
+        .card-4 {
+            background: linear-gradient(135deg, #10b981, #059669);
+            top: 160px;
+            z-index: 4;
+        }
+
+        .card-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .card-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .card-number {
+            font-size: 5rem;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            opacity: 0.2;
+            font-weight: 900;
+        }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-spacer">
+        <div>
+            <h2>Mobile Stacking Cards</h2>
+            <div class="scroll-hint">Scroll Down ↓</div>
+        </div>
+    </div>
+
+    <div class="stack-container">
+        <!-- Card 1 -->
+        <div class="stack-card card-1">
+            <span class="card-number">01</span>
+            <div class="card-content">
+                <h3>Design</h3>
+                <p>We start with a blueprint. Every pixel is planned to perfection for the best mobile experience.</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="stack-card card-2">
+            <span class="card-number">02</span>
+            <div class="card-content">
+                <h3>Develop</h3>
+                <p>Clean code and fast performance. We build systems that scale comfortably.</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="stack-card card-3">
+            <span class="card-number">03</span>
+            <div class="card-content">
+                <h3>Test</h3>
+                <p>Rigorous testing on all devices ensures no bugs reach the final user.</p>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="stack-card card-4">
+            <span class="card-number">04</span>
+            <div class="card-content">
+                <h3>Deploy</h3>
+                <p>Launch day! We push the site live and monitor it for smooth operation globally.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 500px;"></div> <!-- Spacer to allow scrolling past the end -->
+
+</body>
+
+</html>

@@ -56,6 +56,9 @@
     box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
+    /* IMPORTANT: Sticky requires parents to generally NOT have hidden overflow. 
+       If this was 'hidden', sticky would break. */
+    overflow: visible;
 }
 
 .service-card:hover {
