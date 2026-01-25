@@ -20,9 +20,21 @@
         padding: 0 20px;
     }
 
+    /* Ensure Hamburger is visible above menu and fixed in place */
     .hamburger {
         display: block;
-        z-index: 1001;
+        z-index: 2000;
+        /* Super high z-index to stay on top */
+        position: relative;
+        /* layout.css sets parent header fixed, but we need this relative to stacking context */
+        background: transparent;
+        border: none;
+    }
+
+    /* Ensure close button (X) is clearly visible */
+    .hamburger.active .bar {
+        background-color: var(--primary-color);
+        /* Maintain dark color */
     }
 
     .hamburger.active .bar:nth-child(1) {
