@@ -26,7 +26,8 @@
     color: var(--primary-color);
     margin-bottom: 0.8rem;
     margin-top: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
+    /* Bold */
 }
 
 .service-details h4:first-child {
@@ -160,22 +161,29 @@
     flex-shrink: 0;
 }
 
+/* Service CTA Button - Matches Global Primary Button */
 .service-cta {
     display: inline-block;
-    background: linear-gradient(135deg, var(--secondary-color), #2563eb);
-    color: var(--white);
-    padding: 12px 28px;
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    background: var(--secondary-color);
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-heading);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    letter-spacing: -0.3px;
+    border: 2px solid var(--secondary-color);
 }
 
 .service-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: #0f4296;
+    /* Darker Navy Blue */
+    border-color: #0f4296;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15, 66, 150, 0.4);
+    color: #ffffff;
 }
 
 .service-cta i {
@@ -217,7 +225,10 @@
     margin-top: 20px;
     margin-bottom: 0.8rem;
     color: var(--primary-color);
-    font-size: 1.3rem;
+    font-size: 1.35rem;
+    font-weight: 800;
+    /* Extra Bold */
+    letter-spacing: -0.5px;
 }
 
 .project-card p {
