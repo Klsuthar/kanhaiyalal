@@ -207,8 +207,8 @@
     transition: transform 0.3s ease;
 }
 
-.project-card > h3,
-.project-card > p {
+.project-card>h3,
+.project-card>p {
     padding: 0 35px;
 }
 
@@ -295,6 +295,143 @@
 .phil-item h4 {
     font-size: 1.2rem;
     font-weight: 500;
+}
+
+/* Process Section (Smaller & Refined) */
+.process-container {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.process-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.process-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    height: 260px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.process-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: var(--secondary-color);
+}
+
+/* Card Content - Default View */
+.process-step-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.04);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    line-height: 1;
+    transition: all 0.4s ease;
+}
+
+.process-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 12px;
+    display: block;
+    transition: all 0.4s ease;
+}
+
+.process-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 5px;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+    line-height: 1.4;
+}
+
+/* Hover Content - Slide Up */
+.process-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    background: linear-gradient(to top, var(--secondary-color) 0%, rgba(59, 130, 246, 0.95) 100%);
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+}
+
+.process-card:hover .process-description,
+.process-card:focus-within .process-description {
+    transform: translateY(0);
+}
+
+.process-desc-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.3s ease 0.1s;
+}
+
+.process-card:hover .process-desc-text,
+.process-card:focus-within .process-desc-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Move default elements up on hover */
+.process-card:hover .process-icon {
+    transform: translateY(-30px) scale(0.8);
+    opacity: 0;
+}
+
+.process-card:hover .process-step-number {
+    opacity: 0;
+}
+
+.process-card:hover .process-heading {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+/* Heading inside description for context */
+.process-description h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 6px;
+    display: inline-block;
 }
 
 /* About Section */
