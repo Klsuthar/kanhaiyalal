@@ -14,6 +14,8 @@
     overflow: visible !important;
     position: relative;
     z-index: 1;
+    display: block;
+    /* Ensure it's block, not impacted by weird flex/grid alignments */
 }
 
 .service-intro {
@@ -220,6 +222,13 @@
     animation: none !important;
     opacity: 1 !important;
     /* Force visible since animation is removed */
+    overflow: visible !important;
+}
+
+/* Ensure global overflow visibility for sticky context */
+main,
+section,
+.container {
     overflow: visible !important;
 }
 
@@ -879,9 +888,44 @@
     .stack-card {
         padding: 24px;
         min-height: 220px;
+        /* Ensure sticky support for Safari/Mobile */
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        margin-bottom: 20px;
+        /* Reduced margin to keep them closer */
+    }
+
+    /* Stacking with clearly visible headers */
+    /* Header is approx 80-90px tall. Start below it. */
+    .card-trust {
+        top: 100px;
+    }
+
+    .card-service {
+        top: 160px;
+        /* +60px for header visibility */
+    }
+
+    .card-inquiry {
+        top: 220px;
+        /* +60px */
+    }
+
+    .card-mobile {
+        top: 280px;
+        /* +60px */
     }
 
     .stack-card h4 {
         font-size: 1.35rem;
+    }
+
+    .stack-container {
+        /* Ensure generous track height for smooth stickiness */
+        min-height: 1600px;
+        padding-bottom: 100px;
+        position: relative;
+        /* Context */
+        display: block;
     }
 }
