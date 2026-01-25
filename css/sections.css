@@ -212,6 +212,17 @@
     background: var(--surface-color);
 }
 
+/* FIX: Sticky Animation requires NO transform on parents.
+   We must disable the fade-in transform for this specific card 
+   so the internal sticky scrolling works. */
+#business-service {
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    /* Force visible since animation is removed */
+    overflow: visible !important;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -789,31 +800,32 @@
     /* Ensure z-index is managed via classes */
 }
 
-/* Card Variants - Explicit Z-Index & Offsets */
+/* Card Variants - Explicit Z-Index & Greater Offsets for Visibility */
 .card-trust {
     background: linear-gradient(135deg, #1e293b, #0f172a);
-    top: 120px;
+    top: 100px;
+    /* Start higher */
     z-index: 10;
 }
 
 .card-service {
     background: linear-gradient(135deg, #2563eb, #1d4ed8);
     top: 150px;
-    /* +30px visible header */
+    /* +50px difference */
     z-index: 20;
 }
 
 .card-inquiry {
     background: linear-gradient(135deg, #059669, #047857);
-    top: 180px;
-    /* +60px visible header */
+    top: 200px;
+    /* +50px difference */
     z-index: 30;
 }
 
 .card-mobile {
     background: linear-gradient(135deg, #7c3aed, #6d28d9);
-    top: 210px;
-    /* +90px visible header */
+    top: 250px;
+    /* +50px difference */
     z-index: 40;
 }
 
