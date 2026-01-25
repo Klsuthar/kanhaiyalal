@@ -1,11 +1,25 @@
 /* Mobile Responsive Styles */
 
 @media (max-width: 768px) {
+
     /* Header */
-    .header-container {
-        padding: 0 10px;
+    .header {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        padding: 1rem 0;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.95);
     }
-    
+
+    .header-container {
+        padding: 0 20px;
+    }
+
     .hamburger {
         display: block;
         z-index: 1001;
@@ -33,7 +47,7 @@
         height: 100vh;
         justify-content: center;
         transition: 0.3s;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .nav-list.active {
@@ -64,19 +78,19 @@
         font-size: 0.92rem;
         gap: 10px;
     }
-    
+
     .pwa-highlight {
         padding: 20px;
     }
-    
+
     .service-details h4 {
         font-size: 1rem;
     }
-    
+
     .detail-text {
         font-size: 0.92rem;
     }
-    
+
     .service-cta {
         width: 100%;
         text-align: center;
