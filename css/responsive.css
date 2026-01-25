@@ -2,21 +2,26 @@
 
 @media (max-width: 768px) {
 
-    /* Header - Aggressive Fix */
-    body .header,
-    body .header.scrolled {
+    /* Header - Mobile Layout */
+    .header,
+    .header.scrolled {
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
         width: 100% !important;
+        max-width: 100% !important;
         margin: 0 !important;
-        transform: translate(0, 0) !important;
-        transition: none !important;
-        z-index: 99999 !important;
+        padding: 1rem 0 !important;
         border-radius: 0 !important;
         background: #ffffff !important;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
-        padding: 1rem 0 !important;
+        transform: none !important;
+        transition: none !important;
+        /* No jumpy transitions on scroll value change */
+        z-index: 9999 !important;
+        /* Standard high z-index */
+        border: none !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
     }
 
     .header-container {
