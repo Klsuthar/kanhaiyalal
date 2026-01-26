@@ -44,6 +44,9 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#020617">
 </head>
 
 <body>
@@ -180,13 +183,29 @@
                                 </div>
                             </div>
 
-                            <div class="pwa-highlight">
-                                <h4><i class="fas fa-download"></i> App-like Website (PWA Ready)</h4>
-                                <p class="detail-text">Your website can be installed like an app on any phone. No app
-                                    store needed. Parents get a home screen icon, instant loading, and offline access to
-                                    key information.</p>
-                                <p class="pwa-benefit">It feels like an app, but works like a website—simple for you,
-                                    convenient for them.</p>
+                            <div class="pwa-showcase-card">
+                                <div class="pwa-card-content">
+                                    <div class="pwa-icon-wrapper">
+                                        <div class="pwa-icon-pulse"></div>
+                                        <i class="fas fa-mobile-screen-button"></i>
+                                    </div>
+                                    <div class="pwa-text-content">
+                                        <h4>Install & Test App Mode</h4>
+                                        <p>Experience the <strong>native app feel</strong>. Install this website on your
+                                            device to test offline access and instant loading.</p>
+                                        <ul class="pwa-mini-features">
+                                            <li><i class="fas fa-bolt"></i> Instant Load</li>
+                                            <li><i class="fas fa-wifi"></i> Offline Ready</li>
+                                            <li><i class="fas fa-download"></i> No App Store</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pwa-action-area">
+                                    <button id="pwaInstallBtn" class="btn-pwa-install" style="display: none;">
+                                        <i class="fas fa-download"></i> Install App Now
+                                    </button>
+                                    <p id="pwaStatusMsg" class="pwa-status">Listening for install prompt...</p>
+                                </div>
                             </div>
 
                             <h4>What's Included</h4>
@@ -647,6 +666,20 @@
     <script src="js/navigation.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/hero-animation.js"></script>
+    <script src="js/pwa-handler.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>
