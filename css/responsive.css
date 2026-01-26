@@ -13,15 +13,17 @@
         margin: 0 !important;
         padding: 0.5rem 0 !important;
         border-radius: 0 !important;
-        background: #ffffff !important;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+        background: rgba(15, 23, 42, 0.95) !important;
+        /* Darker background for mobile header */
+        backdrop-filter: blur(12px) !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
         transform: none !important;
         transition: none !important;
         /* No jumpy transitions on scroll value change */
         z-index: 9999 !important;
         /* Standard high z-index */
         border: none !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
     .header-container {
@@ -65,7 +67,7 @@
         left: auto;
         /* Reset left */
         flex-direction: column;
-        background-color: #ffffff;
+        background-color: var(--surface-color);
         width: 100%;
         /* Full width for cleaner look, or 80% if you want side */
         height: 100vh;
@@ -86,7 +88,7 @@
     .nav-link {
         font-size: 1.25rem;
         font-weight: 600;
-        color: var(--primary-color);
+        color: var(--text-color);
         width: auto;
         display: inline-block;
     }
