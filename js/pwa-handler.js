@@ -1,54 +1,82 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let deferredPrompt;
-    const installBtn = document.getElementById('pwaInstallBtn');
-    const statusMsg = document.getElementById('pwaStatusMsg');
+// Run immediately to avoid flash of wrong text
+(function () {
+    function updatePWAStatus() {
+        const installBtn = document.getElementById('pwaInstallBtn');
+        const statusMsg = document.getElementById('pwaStatusMsg');
+        let deferredPrompt;
 
-    if (!installBtn) return;
+        if (!installBtn || !statusMsg) return;
 
-    // 1. Listen for the 'beforeinstallprompt' event
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent the mini-infobar from appearing on mobile
-        e.preventDefault();
-        // Stash the event so it can be triggered later.
-        deferredPrompt = e;
+        // 1. Check if running as PWA (Standalone)
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+            window.navigator.standalone === true ||
+            document.referrer.includes('android-app://');
 
-        // Update UI notify the user they can install the PWA
-        installBtn.style.display = 'inline-flex';
-        statusMsg.textContent = "App is ready to install!";
-        statusMsg.style.color = "var(--cyan-accent)";
-
-        console.log('PWA: beforeinstallprompt fired');
-    });
-
-    // 2. Handle the install button click
-    installBtn.addEventListener('click', async () => {
-        if (!deferredPrompt) {
+        if (isStandalone) {
+            installBtn.style.display = 'none';
+            statusMsg.textContent = "✅ App is Installed";
+            statusMsg.style.color = "#4ade80"; // Bright Green
+            statusMsg.style.fontWeight = "bold";
             return;
         }
 
-        // Show the install prompt
-        deferredPrompt.prompt();
+        // 2. Listen for Install Prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
 
-        // Wait for the user to respond to the prompt
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log(`PWA: User response to install prompt: ${outcome}`);
+            // Show Install Button
+            installBtn.style.display = 'inline-flex';
+            statusMsg.textContent = "App is ready to install";
+            statusMsg.style.color = "var(--cyan-accent)";
+        });
 
-        // We've used the prompt, and can't use it again, throw it away
-        deferredPrompt = null;
+        // 3. Handle Install Click
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            deferredPrompt = null;
 
-        // Hide button again if installed (or dismissed, though usually we keep it if dismissed)
-        if (outcome === 'accepted') {
+            if (outcome === 'accepted') {
+                installBtn.style.display = 'none';
+                statusMsg.textContent = "Installing...";
+            }
+        });
+
+        // 4. Listen for Successful Install
+        window.addEventListener('appinstalled', () => {
             installBtn.style.display = 'none';
-            statusMsg.textContent = "Thank you for installing!";
-            statusMsg.style.color = "var(--secondary-color)";
-        }
-    });
+            statusMsg.textContent = "✅ App is Installed";
+            statusMsg.style.color = "#4ade80";
+        });
 
-    // 3. Check if app is already installed
-    window.addEventListener('appinstalled', (evt) => {
-        console.log('PWA: App was successfully installed');
-        installBtn.style.display = 'none';
-        statusMsg.textContent = "App is currently installed.";
-        statusMsg.style.color = "#4ade80"; // Green
-    });
-});
+        // 5. Timeout to clear "Checking..." if nothing happens
+        setTimeout(() => {
+            if (statusMsg.textContent.includes('Checking') && !deferredPrompt && !isStandalone) {
+                // Try to detect if installed via detailed API (Chrome 80+)
+                if ('getInstalledRelatedApps' in navigator) {
+                    navigator.getInstalledRelatedApps().then(apps => {
+                        if (apps.length > 0) {
+                            statusMsg.textContent = "✅ App is Installed";
+                            statusMsg.style.color = "#4ade80";
+                        } else {
+                            statusMsg.textContent = ""; // Clear text if just viewing website
+                        }
+                    }).catch(() => {
+                        statusMsg.textContent = "";
+                    });
+                } else {
+                    statusMsg.textContent = ""; // Clear text
+                }
+            }
+        }, 2000);
+    }
+
+    // Call on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updatePWAStatus);
+    } else {
+        updatePWAStatus();
+    }
+})();
