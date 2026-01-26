@@ -1,54 +1,55 @@
 {
   "name": "Kanhaiya Lal Suthar - Digital Solutions",
   "short_name": "KLS Digital",
-  "start_url": "/",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#020617",
   "description": "Premium digital website solutions specializing in school and business websites.",
   "icons": [
     {
-      "src": "/icon/fav/fav16.ico",
+      "src": "icon/fav/fav16.ico",
       "sizes": "16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav24.ico",
+      "src": "icon/fav/fav24.ico",
       "sizes": "24x24",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav32.ico",
+      "src": "icon/fav/fav32.ico",
       "sizes": "32x32",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav48.ico",
+      "src": "icon/fav/fav48.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav64.ico",
+      "src": "icon/fav/fav64.ico",
       "sizes": "64x64",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav96.ico",
+      "src": "icon/fav/fav96.ico",
       "sizes": "96x96",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav128.ico",
+      "src": "icon/fav/fav128.ico",
       "sizes": "128x128",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav256.ico",
+      "src": "icon/fav/fav256.ico",
       "sizes": "256x256",
       "type": "image/x-icon"
     },
     {
-      "src": "/icon/fav/fav512.ico",
+      "src": "icon/fav/fav512.ico",
       "sizes": "512x512",
       "type": "image/x-icon"
     }

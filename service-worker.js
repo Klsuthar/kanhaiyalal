@@ -1,20 +1,22 @@
 const CACHE_NAME = 'kls-portfolio-v1';
 const ASSETS_TO_CACHE = [
-    '/',
-    '/index.html',
-    '/css/base.css',
-    '/css/components.css',
-    '/css/layout.css',
-    '/css/sections.css',
-    '/css/responsive.css',
-    '/css/hero-animation.css',
-    '/components/school-service.css',
-    '/components/business-service.css',
-    '/js/navigation.js',
-    '/js/animations.js',
-    '/js/hero-animation.js',
-    '/icon/fav/fav32.ico',
-    '/icon/fav/fav128.ico'
+    './',
+    './index.html',
+    './css/base.css',
+    './css/components.css',
+    './css/layout.css',
+    './css/sections.css',
+    './css/responsive.css',
+    './css/hero-animation.css',
+    './components/school-service.css',
+    './components/business-service.css',
+    './js/navigation.js',
+    './js/animations.js',
+    './js/hero-animation.js',
+    './js/pwa-handler.js',
+    './icon/fav/fav32.ico',
+    './icon/fav/fav128.ico',
+    './icon/fav/fav512.ico'
 ];
 
 // Install Event - Cache Assets
