@@ -12,24 +12,23 @@
     height: 100%;
     z-index: 1;
     overflow: hidden;
-    background: 
-        linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 30%, #dbeafe 60%, #bfdbfe 100%);
+    background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
 }
 
 /* Animated gradient wave layer - creates depth */
 .gradient-wave {
     position: absolute;
-    top: -10%;
-    left: -10%;
-    width: 120%;
-    height: 120%;
-    background: 
-        radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 70%, rgba(147, 197, 253, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 60%),
-        radial-gradient(circle at 10% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 40%);
-    animation: waveFloat 25s ease-in-out infinite;
-    opacity: 0.8;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 40%);
+    animation: waveFloat 20s ease-in-out infinite alternate;
+    opacity: 1;
+    filter: blur(40px);
 }
 
 /* Additional floating orbs for depth */
@@ -38,27 +37,27 @@
     content: '';
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.25;
-    animation: orbFloat 30s ease-in-out infinite;
+    filter: blur(60px);
+    opacity: 0.6;
+    animation: orbFloat 25s ease-in-out infinite;
 }
 
 .gradient-wave::before {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 40%, transparent 70%);
-    top: -150px;
-    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.2) 0%, rgba(34, 211, 238, 0.05) 50%, transparent 70%);
+    top: -100px;
+    right: -100px;
     animation-delay: -5s;
 }
 
 .gradient-wave::after {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(147, 197, 253, 0.4) 0%, rgba(147, 197, 253, 0.15) 40%, transparent 70%);
-    bottom: -100px;
-    left: -100px;
-    animation-delay: -15s;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0.05) 50%, transparent 70%);
+    bottom: -50px;
+    left: -50px;
+    animation-delay: -12s;
 }
 
 /* Particle canvas - tech nodes animation */
@@ -68,41 +67,43 @@
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.6;
     z-index: 5;
     pointer-events: none;
+    background-image:
+        radial-gradient(var(--secondary-color) 1px, transparent 1px),
+        radial-gradient(var(--secondary-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
 /* Gradient wave animation - slow, calming movement */
 @keyframes waveFloat {
-    0%, 100% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-        opacity: 0.8;
+    0% {
+        transform: translate(0, 0) scale(1);
     }
-    25% {
-        transform: translate(-30px, -40px) scale(1.08) rotate(2deg);
-        opacity: 0.9;
-    }
-    50% {
-        transform: translate(20px, 30px) scale(0.95) rotate(-1deg);
-        opacity: 0.85;
-    }
-    75% {
-        transform: translate(30px, -20px) scale(1.05) rotate(1deg);
-        opacity: 0.88;
+
+    100% {
+        transform: translate(-30px, -20px) scale(1.05);
     }
 }
 
 /* Floating orbs animation */
 @keyframes orbFloat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
     }
+
     33% {
-        transform: translate(-50px, -80px) scale(1.2);
+        transform: translate(30px, -50px) scale(1.1);
     }
+
     66% {
-        transform: translate(80px, 50px) scale(0.9);
+        transform: translate(-20px, 30px) scale(0.9);
     }
 }
 
@@ -115,69 +116,43 @@
 /* Text readability enhancement */
 .hero-title,
 .hero-subtitle {
-    text-shadow: 
-        0 2px 10px rgba(255, 255, 255, 0.9),
-        0 4px 20px rgba(255, 255, 255, 0.6);
     user-select: text;
+}
+
+.hero-title {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--primary-color);
+    /* Fallback */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .gradient-wave {
-        animation-duration: 20s;
+        animation-duration: 15s;
     }
-    
+
     .gradient-wave::before {
+        width: 300px;
+        height: 300px;
+        filter: blur(40px);
+    }
+
+    .gradient-wave::after {
         width: 250px;
         height: 250px;
-    }
-    
-    .gradient-wave::after {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .particle-canvas {
-        opacity: 0.4;
+        filter: blur(40px);
     }
 }
 
 /* Reduced motion support - accessibility */
 @media (prefers-reduced-motion: reduce) {
-    .gradient-wave {
+
+    .gradient-wave,
+    .gradient-wave::before,
+    .gradient-wave::after {
         animation: none;
-        opacity: 0.5;
-    }
-    
-    .particle-canvas {
-        display: none;
-    }
-}
-
-/* Interactive hint - subtle pulse */
-@keyframes hintPulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.1); }
-}
-
-.particle-canvas::before {
-    content: '';
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent);
-    border-radius: 50%;
-    animation: hintPulse 3s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@media (max-width: 768px) {
-    .particle-canvas::before {
-        bottom: 20px;
-        right: 20px;
-        width: 30px;
-        height: 30px;
     }
 }
