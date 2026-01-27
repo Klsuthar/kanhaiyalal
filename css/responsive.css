@@ -180,10 +180,12 @@
 
 /* Hero */
 .hero {
-    padding: 140px 0 60px;
-    /* Reduced vertical padding */
-    min-height: auto;
-    /* Remove strictly forced 100vh on mobile */
+    padding: 80px 0;
+    min-height: 100dvh;
+    /* Full dynamic viewport height for mobile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-title {
@@ -426,7 +428,8 @@
     gap: 20px;
     text-align: center;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 110px;
+    /* Added padding to clear bottom nav */
 }
 }
 
