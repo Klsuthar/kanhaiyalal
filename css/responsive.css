@@ -3,6 +3,8 @@
 @media (max-width: 768px) {
 
     /* Header - Mobile Layout */
+    /* Header - Mobile Layout */
+    /* Header - Mobile Layout */
     .header,
     .header.scrolled {
         position: fixed !important;
@@ -28,340 +30,404 @@
 
     .header-container {
         padding: 0 20px;
+        justify-content: flex-start;
+        /* Align logo to left on mobile */
     }
 
-    /* Ensure Hamburger is visible above menu and fixed in place */
+    /* Hide Hamburger & Default Nav */
     .hamburger {
-        display: block;
-        z-index: 2000;
-        /* Super high z-index to stay on top */
-        position: relative;
-        /* layout.css sets parent header fixed, but we need this relative to stacking context */
-        background: transparent;
-        border: none;
-    }
-
-    /* Ensure close button (X) is clearly visible */
-    .hamburger.active .bar {
-        background-color: var(--primary-color);
-        /* Maintain dark color */
-    }
-
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        display: none !important;
     }
 
     .nav-list {
+        display: none !important;
+    }
+
+    /* Mobile Bottom Navigation Bar - Premium floating dock */
+    .mobile-bottom-nav {
         position: fixed;
-        top: 0;
-        right: -100%;
-        /* Start off-screen right */
-        left: auto;
-        /* Reset left */
-        flex-direction: column;
-        background-color: var(--surface-color);
-        width: 100%;
-        /* Full width for cleaner look, or 80% if you want side */
-        height: 100vh;
-        justify-content: center;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 30px);
+        /* Responsive width with margin */
+        max-width: 400px;
+        height: 75px;
+        background: rgba(15, 23, 42, 0.8);
+        /* Deep Glass */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 25px;
+        display: flex;
+        justify-content: space-evenly;
         align-items: center;
-        padding: 0;
-        transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        gap: 25px;
+        z-index: 9999;
+        padding: 0 5px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
     }
 
-    .nav-list.active {
-        right: 0;
-        /* Slide in */
+    .mobile-nav-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #64748b;
+        /* Muted slate */
+        text-decoration: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .nav-link {
-        font-size: 1.25rem;
+    .nav-icon-container {
+        font-size: 1.4rem;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-label {
+        font-size: 0.75rem;
         font-weight: 600;
-        color: var(--text-color);
-        width: auto;
-        display: inline-block;
+        opacity: 0;
+        transform: translateY(10px) scale(0.8);
+        transition: all 0.3s ease;
+        position: absolute;
+        bottom: 4px;
+        /* Positioned inside the bar */
+        color: #fff;
+        pointer-events: none;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
-    .nav-link.active {
-        color: var(--secondary-color);
+    /* Active State - Icon Pops Up */
+    .mobile-nav-item.active {
+        transform: translateY(-25px);
+        /* Lift entire item up */
     }
 
-    .nav-link::after {
+    .mobile-nav-item.active .nav-icon-container {
+        background: linear-gradient(135deg, var(--secondary-color), var(--cyan-accent));
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        color: #fff;
+        box-shadow: 0 10px 25px rgba(34, 211, 238, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+    }
+
+    .mobile-nav-item.active .nav-icon-container i {
+        transform: scale(1.1);
+    }
+
+    .mobile-nav-item.active .nav-label {
+        opacity: 1;
+        transform: translateY(38px) scale(1);
+        /* Move label DOWN back into the bar */
+    }
+
+    /* Spotlight/Platform Effect under active icon */
+    .mobile-nav-item::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%) scale(0);
+        width: 30px;
+        height: 4px;
+        background: radial-gradient(circle, var(--cyan-accent) 0%, transparent 70%);
+        border-radius: 50%;
+        opacity: 0;
+        transition: all 0.3s ease;
+        filter: blur(2px);
+    }
+
+    .mobile-nav-item.active::after {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+        bottom: -15px;
+        /* Position glow inside the bar */
+    }
+
+    /* Disable styling from previous version to avoid conflict */
+    .mobile-nav-item.active::before {
         display: none;
     }
 
-    .nav-list li {
-        width: 100%;
-        text-align: center;
+    @keyframes popUp {
+        0% {
+            transform: scale(0.5) translateY(0);
+        }
+
+        100% {
+            transform: scale(1) translateY(-25px);
+        }
     }
+}
 
-    .nav-link.btn-primary {
-        margin-top: 20px;
-        display: inline-block;
-        padding: 12px 32px;
-    }
+/* Default View - Hide Bottom Nav on Desktop */
+.mobile-bottom-nav {
+    /* This rule is inside @media max-width 768px, so it shows there. 
+           We need to hide it globally first in layout.css or handling inverse media query.
+           BUT simpler: default display:none in base CSS, then display:flex here.
+        */
+    display: flex;
+}
 
-    /* Hero */
-    .hero {
-        padding: 140px 0 60px;
-        /* Reduced vertical padding */
-        min-height: auto;
-        /* Remove strictly forced 100vh on mobile */
-    }
+/* Hero */
+.hero {
+    padding: 140px 0 60px;
+    /* Reduced vertical padding */
+    min-height: auto;
+    /* Remove strictly forced 100vh on mobile */
+}
 
-    .hero-title {
-        font-size: 2.8rem;
-        letter-spacing: -1px;
-        line-height: 1.1;
-    }
+.hero-title {
+    font-size: 2.8rem;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
 
-    .hero-subtitle {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
+.hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
 
-    /* Services */
-    .service-card {
-        padding: 24px 20px;
-        margin-bottom: 20px;
-    }
+/* Services */
+.service-card {
+    padding: 24px 20px;
+    margin-bottom: 20px;
+}
 
-    .section-padding {
-        padding: 60px 0;
-        /* Tighter section spacing */
-    }
+.section-padding {
+    padding: 60px 0;
+    /* Tighter section spacing */
+}
 
-    .benefit-list li {
-        font-size: 0.92rem;
-        gap: 10px;
-    }
+.benefit-list li {
+    font-size: 0.92rem;
+    gap: 10px;
+}
 
-    .pwa-highlight {
-        padding: 20px;
-    }
+.pwa-highlight {
+    padding: 20px;
+}
 
-    .service-details h4 {
-        font-size: 1rem;
-    }
+.service-details h4 {
+    font-size: 1rem;
+}
 
-    .detail-text {
-        font-size: 0.92rem;
-    }
+.detail-text {
+    font-size: 0.92rem;
+}
 
-    .service-cta {
-        width: 100%;
-        text-align: center;
-    }
+.service-cta {
+    width: 100%;
+    text-align: center;
+}
 
-    .business-types {
-        grid-template-columns: 1fr;
-    }
+.business-types {
+    grid-template-columns: 1fr;
+}
 
-    /* Philosophy & Process */
-    .philosophy-grid {
-        flex-direction: column;
-        gap: 20px;
-    }
+/* Philosophy & Process */
+.philosophy-grid {
+    flex-direction: column;
+    gap: 20px;
+}
 
-    /* Container adjustment for mobile */
-    .container {
-        padding: 0 20px;
-    }
+/* Container adjustment for mobile */
+.container {
+    padding: 0 20px;
+}
 
-    /* Process & Projects Horizontal Scroll Styling */
-    .process-container,
-    .projects-grid {
-        width: auto;
-        /* Avoid 100vw which can cause scrollbar/zoom issues */
-        margin-left: -20px;
-        margin-right: -20px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+/* Process & Projects Horizontal Scroll Styling */
+.process-container,
+.projects-grid {
+    width: auto;
+    /* Avoid 100vw which can cause scrollbar/zoom issues */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
-    .process-container {
-        margin-top: 1.5rem;
-    }
+.process-container {
+    margin-top: 1.5rem;
+}
 
-    .process-title {
-        font-size: 1.5rem;
-        padding-right: 20px;
-    }
+.process-title {
+    font-size: 1.5rem;
+    padding-right: 20px;
+}
 
-    .process-grid {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        padding-bottom: 30px;
-        width: 100%;
-        /* Ensure full width usage */
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
+.process-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 30px;
+    width: 100%;
+    /* Ensure full width usage */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
 
-    .process-card {
-        height: 220px;
-        /* Taller for better readability */
-        padding: 24px;
-        min-width: 280px;
-        width: 280px;
-        /* Fixed width for consistent cards */
-        flex-shrink: 0;
-        scroll-snap-align: center;
-        margin-bottom: 0;
-        margin-right: 15px;
-        /* Add spacing between cards */
-    }
+.process-card {
+    height: 220px;
+    /* Taller for better readability */
+    padding: 24px;
+    min-width: 280px;
+    width: 280px;
+    /* Fixed width for consistent cards */
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    margin-bottom: 0;
+    margin-right: 15px;
+    /* Add spacing between cards */
+}
 
-    .process-step-number {
-        font-size: 2.5rem;
-        top: 15px;
-        right: 15px;
-    }
+.process-step-number {
+    font-size: 2.5rem;
+    top: 15px;
+    right: 15px;
+}
 
-    .process-icon {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-    }
+.process-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
 
-    .process-heading {
-        font-size: 1.15rem;
-        margin-bottom: 0;
-    }
+.process-heading {
+    font-size: 1.15rem;
+    margin-bottom: 0;
+}
 
-    /* Projects Section - Mobile Horizontal Scroll */
-    .projects-grid {
-        display: flex;
-        overflow-x: auto;
-        gap: 20px;
-        padding-top: 10px;
-        padding-bottom: 40px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
+/* Projects Section - Mobile Horizontal Scroll */
+.projects-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
 
-    /* Fix: Disable vertical fade animation in horizontal scroll to prevent weird jumping */
-    .projects-grid .project-card.fade-in,
-    .process-grid .process-card {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-        /* Keep hover effects */
-    }
+/* Fix: Disable vertical fade animation in horizontal scroll to prevent weird jumping */
+.projects-grid .project-card.fade-in,
+.process-grid .process-card {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    /* Keep hover effects */
+}
 
 
 
-    .project-card {
-        min-width: 280px;
-        /* Adjusted for better fit on small screens */
-        max-width: 300px;
-        flex-shrink: 0;
-        scroll-snap-align: center;
-        margin-bottom: 0;
-        height: auto;
-        white-space: normal;
-        /* text wrapping */
-    }
+.project-card {
+    min-width: 280px;
+    /* Adjusted for better fit on small screens */
+    max-width: 300px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    margin-bottom: 0;
+    height: auto;
+    white-space: normal;
+    /* text wrapping */
+}
 
-    .project-img-link {
-        height: 180px;
-    }
+.project-img-link {
+    height: 180px;
+}
 
-    .project-body {
-        padding: 20px;
-    }
+.project-body {
+    padding: 20px;
+}
 
-    /* About Section */
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
+/* About Section */
+.about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
 
-    .about-text-content .section-title {
-        font-size: 2.2rem;
-        line-height: 1.2;
-    }
+.about-text-content .section-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+}
 
-    .about-label {
-        font-size: 0.8rem;
-        margin-bottom: 15px;
-    }
+.about-label {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
 
-    .bio-text {
-        font-size: 1rem;
-        max-width: 100%;
-    }
+.bio-text {
+    font-size: 1rem;
+    max-width: 100%;
+}
 
-    .skills-wrapper {
-        justify-content: flex-start;
-        margin-top: 30px;
-        gap: 10px;
-    }
+.skills-wrapper {
+    justify-content: flex-start;
+    margin-top: 30px;
+    gap: 10px;
+}
 
-    .about-visual {
-        flex-direction: row;
-        /* Horizontal scroll for stats or wrapped */
-        flex-wrap: wrap;
-        /* Allow wrapping if needed */
-        gap: 15px;
-    }
+.about-visual {
+    flex-direction: row;
+    /* Horizontal scroll for stats or wrapped */
+    flex-wrap: wrap;
+    /* Allow wrapping if needed */
+    gap: 15px;
+}
 
-    .stat-card {
-        flex: 1 1 100%;
-        /* Full width on mobile or sharing row */
-        padding: 24px;
-        min-width: unset;
-    }
+.stat-card {
+    flex: 1 1 100%;
+    /* Full width on mobile or sharing row */
+    padding: 24px;
+    min-width: unset;
+}
 
-    /* Make stats 50/50 if space allows, or stacked */
-    .stat-card {
-        flex: 1 1 100%;
-    }
+/* Make stats 50/50 if space allows, or stacked */
+.stat-card {
+    flex: 1 1 100%;
+}
 
-    .stat-number {
-        font-size: 2.5rem;
-    }
+.stat-number {
+    font-size: 2.5rem;
+}
 
-    /* Contact - Redesigned Mobile */
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
+/* Contact - Redesigned Mobile */
+.contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
 
-    .contact-intro {
-        text-align: left;
-    }
+.contact-intro {
+    text-align: left;
+}
 
-    .contact-main-btn {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-    }
+.contact-main-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
 
-    .contact-option-card {
-        padding: 20px;
-    }
+.contact-option-card {
+    padding: 20px;
+}
 
-    /* Footer */
-    .footer-content {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
+/* Footer */
+.footer-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 }
 
 @media (min-width: 1024px) {

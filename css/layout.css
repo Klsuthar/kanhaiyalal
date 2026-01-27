@@ -260,6 +260,13 @@
     padding: 40px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     /* Softened border */
+    margin-bottom: 0;
+    /* Default for desktop */
+}
+
+/* Ensure mobile nav is hidden on desktop by default */
+.mobile-bottom-nav {
+    display: none;
 }
 
 .footer-content {

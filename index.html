@@ -727,6 +727,75 @@
             });
         }
     </script>
+    <!-- Mobile Bottom Navigation (App-like) -->
+    <nav class="mobile-bottom-nav">
+        <a href="#home" class="mobile-nav-item active">
+            <div class="nav-icon-container">
+                <i class="fas fa-home"></i>
+            </div>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="#services" class="mobile-nav-item">
+            <div class="nav-icon-container">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <span class="nav-label">Services</span>
+        </a>
+        <a href="#projects" class="mobile-nav-item">
+            <div class="nav-icon-container">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <span class="nav-label">Projects</span>
+        </a>
+        <a href="#about" class="mobile-nav-item">
+            <div class="nav-icon-container">
+                <i class="fas fa-user-astronaut"></i>
+            </div>
+            <span class="nav-label">About</span>
+        </a>
+        <a href="#contact" class="mobile-nav-item">
+            <div class="nav-icon-container">
+                <i class="fas fa-paper-plane"></i>
+            </div>
+            <span class="nav-label">Contact</span>
+        </a>
+    </nav>
+
+    <script>
+        // Efficient ScrollSpy for Bottom Nav
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.mobile-nav-item');
+
+            const observerSpy = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navItems.forEach(item => {
+                            if (item.getAttribute('href') === `#${id}`) {
+                                // Remove active class from all
+                                navItems.forEach(nav => nav.classList.remove('active'));
+                                // Add to current
+                                item.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                rootMargin: '-50% 0px -50% 0px' // Center of screen
+            });
+
+            sections.forEach(section => observerSpy.observe(section));
+
+            // Click handling for smooth animation
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
