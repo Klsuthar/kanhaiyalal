@@ -251,6 +251,16 @@
         -webkit-overflow-scrolling: touch;
     }
 
+    /* Fix: Disable vertical fade animation in horizontal scroll to prevent weird jumping */
+    .projects-grid .project-card.fade-in,
+    .process-grid .process-card {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        /* Keep hover effects */
+    }
+
 
 
     .project-card {
