@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kls-portfolio-v1';
+const CACHE_NAME = 'kls-portfolio-v2';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -14,9 +14,9 @@ const ASSETS_TO_CACHE = [
     './js/animations.js',
     './js/hero-animation.js',
     './js/pwa-handler.js',
-    './icon/fav/fav32.ico',
-    './icon/fav/fav128.ico',
-    './icon/fav/fav512.ico'
+    './icon/icon-192.png',
+    './icon/icon-512.png',
+    './manifest.json'
 ];
 
 // Install Event - Cache Assets
@@ -45,17 +45,28 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch Event - Serve from Cache, then Network
+// Fetch Event - Stale-While-Revalidate Strategy
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
-            .then((response) => {
-                // Return cached response if found
-                if (response) {
-                    return response;
-                }
-                // Otherwise fetch from network
-                return fetch(event.request);
+            .then((cachedResponse) => {
+                const fetchPromise = fetch(event.request).then((networkResponse) => {
+                    // Update cache with new version
+                    if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+                        const responseToCache = networkResponse.clone();
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, responseToCache);
+                        });
+                    }
+                    return networkResponse;
+                }).catch(() => {
+                    // Network failed
+                    // If we have a cached response, it's already returned below, but if 'cachedResponse' was null, this catch might be needed.
+                    // However, in this pattern, we usually return cachedResponse || fetchPromise.
+                });
+
+                // Return cached response immediately if available, otherwise wait for network
+                return cachedResponse || fetchPromise;
             })
     );
 });

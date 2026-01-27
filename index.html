@@ -8,9 +8,14 @@
         content="Kanhaiya Lal Suthar – Digital Website Solutions. Specializing in School Websites and Online Presence for Medium-Scale Businesses.">
     <title>Kanhaiya Lal Suthar | Digital Website Solutions</title>
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="icon/fav/fav32.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="icon/fav/fav32.ico">
-    <link rel="apple-touch-icon" href="icon/fav/fav512.ico">
+    <link rel="icon" type="image/png" href="icon/icon-192.png">
+    <link rel="apple-touch-icon" href="icon/icon-512.png">
+
+    <!-- iOS Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="KLS Digital">
+
     <script>
         // Polyfill to prevent SecurityError from extensions/local file execution
         try {
@@ -50,6 +55,46 @@
 </head>
 
 <body>
+
+    <!-- Custom PWA Splash Screen -->
+    <div id="app-splash"
+        style="position: fixed; inset: 0; background-color: #020617; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease-out;">
+        <style>
+            @keyframes pulse-logo {
+                0% {
+                    transform: scale(1);
+                    opacity: 0.8;
+                }
+
+                50% {
+                    transform: scale(1.05);
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: scale(1);
+                    opacity: 0.8;
+                }
+            }
+        </style>
+        <div style="text-align: center;">
+            <img src="icon/icon-192.png" alt="Logo"
+                style="width: 80px; height: 80px; margin-bottom: 20px; animation: pulse-logo 2s infinite ease-in-out;">
+            <div style="color: #64748b; font-family: 'Inter', sans-serif; font-size: 0.9rem; letter-spacing: 1px;">
+                LOADING...</div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('app-splash');
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 500);
+            }, 500); // Slight delay to ensure smooth transition
+        });
+    </script>
 
     <!-- Header -->
     <header class="header">
