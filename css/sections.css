@@ -855,8 +855,8 @@ section:not(#services) {
 }
 
 .stat-card {
-    background: rgba(255, 255, 255, 0.03);
-    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(90deg, rgba(34, 211, 238, 0.1) 0%, rgba(37, 99, 235, 0) 100%);
+    border-left: 3px solid var(--cyan-accent);
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -864,14 +864,11 @@ section:not(#services) {
 }
 
 .stat-card:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(90deg, rgba(34, 211, 238, 0.15) 0%, rgba(37, 99, 235, 0.05) 100%);
     transform: translateX(10px);
 }
 
-.highlight-stat {
-    border-left-color: var(--cyan-accent);
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.1) 0%, rgba(37, 99, 235, 0) 100%);
-}
+/* highlight-stat styles are now integrated into the base class */
 
 .stat-number {
     font-size: 3rem;
