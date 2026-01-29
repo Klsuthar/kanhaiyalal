@@ -200,9 +200,35 @@
     display: block;
     width: 25px;
     height: 3px;
-    margin: 5px auto;
-    background-color: var(--primary-color);
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.icon-bubble {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    /* Removed background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    /* Slightly larger icon since bubble is gone */
+    transition: all 0.4s ease;
+    border: none;
+    /* Removed border */
+}
+
+.contact-option-card:hover .icon-bubble {
+    background: transparent;
+    /* Ensure it stays transparent on hover */
+    color: var(--cyan-accent);
+    /* Just change icon color */
+    transform: scale(1.1);
+    box-shadow: none;
+    /* Remove shadow */
 }
 
 /* Hero Section */
@@ -302,6 +328,19 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
+}
+
+.arrow-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    /* Removed bubble background */
+    color: #fff;
+    opacity: 0.5;
+    transition: all 0.3s ease;
 }
 
 .footer-socials a::before {

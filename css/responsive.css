@@ -408,85 +408,46 @@
     font-size: 2.5rem;
 }
 
-/* Contact - Redesigned Mobile */
+/* Contact - Mobile Premium Layout */
 .contact-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    /* Force stack on mobile */
-    gap: 40px !important;
-    align-items: flex-start !important;
+    gap: 50px !important;
 }
 
-.contact-intro {
-    text-align: left;
-}
-
-/* Reset typography for mobile */
 .contact-intro .section-title {
-    font-size: 2.2rem !important;
-    background: none !important;
-    -webkit-text-fill-color: var(--primary-color) !important;
-    color: var(--primary-color) !important;
+    font-size: 2.8rem !important;
+    /* Slightly smaller than PC but big enough */
+    line-height: 1.2 !important;
 }
 
-.contact-intro p {
-    font-size: 1rem !important;
-    margin-bottom: 25px !important;
-    line-height: 1.6 !important;
-    color: var(--text-light) !important;
+.contact::before {
+    display: none;
+    /* Remove large glow on mobile for performance/cleanliness */
 }
 
-.contact-main-btn {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    font-size: 1rem !important;
-    padding: 14px 25px !important;
-}
-
-/* Reset contact cards layout */
-.contact-options {
-    width: 100%;
-    gap: 15px !important;
-}
-
-/* Reset card style for mobile */
+/* Card adjustments for mobile touch */
 .contact-option-card {
     padding: 20px !important;
-    border-radius: 16px !important;
-    background: var(--surface-color) !important;
-    /* Revert glass */
-    border: 1px solid var(--border-color) !important;
     transform: none !important;
-    /* Remove hover scaling */
+    /* No hover shift on mobile */
 }
 
-/* Reset icon bubble */
 .icon-bubble {
     width: 50px !important;
     height: 50px !important;
-    font-size: 1.2rem !important;
-    margin-right: 15px !important;
-    background: rgba(37, 99, 235, 0.1) !important;
-    color: var(--secondary-color) !important;
-    transform: none !important;
+    font-size: 1.5rem !important;
+    margin-right: 10px !important;
+    background: transparent !important;
+    /* Ensure transparent on mobile too */
 }
 
-.contact-text h3 {
-    font-size: 1.1rem !important;
-    color: var(--primary-color) !important;
-}
-
-.contact-text p {
-    font-size: 0.95rem !important;
-    color: var(--text-light) !important;
-}
-
+/* Ensure arrows are visible since no hover on mobile */
 .arrow-icon {
-    opacity: 1 !important;
-    /* Always visible on mobile */
-    transform: none !important;
-    color: var(--text-light) !important;
+    opacity: 0.8 !important;
+    background: transparent !important;
+    /* Removed bubble background */
+    border: none !important;
 }
 
 /* Footer */
